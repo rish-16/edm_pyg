@@ -55,6 +55,7 @@ from edm_pyg import EDMWrapper
 from models import EGNNModel
 
 dynamics = EGNNModel(...).to(device)
+opt = torch.optim.Adam(dynamics.parameters())
 edm = EDMWrapper(
   diffuser=dynamics,
   timesteps=500,
@@ -63,9 +64,8 @@ edm = EDMWrapper(
   batch_size=64,
   grad_clip=False,
   ema=True, 
-  ema_decay=0.995,
+  ema_decay=0.995, # not necessary if ema=False
 ).to(device)
-opt = torch.optim.Adam(dynamics.parameters())
 
 batch = next(iter(train_loader)) # should be a pyg.data.Batch(...) object
 
