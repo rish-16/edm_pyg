@@ -54,6 +54,8 @@ $$
 
 ### Training
 
+> In case you want to find off-the-shelf geometric GNNs for the denoiser, I suggest checking out the [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo) by Joshi, Bodnar, Mathis, Cohen, and Lio (2022). You can find different implementations in the `src/models.py` file. Depending on the model, you may need to copy over extra accessory files so do remember to cite them for their amazing compilation! 
+
 ```python
 from edm_pyg import EDMWrapper
 from models import EGNNModel
@@ -71,8 +73,6 @@ edm = EDMWrapper(
   ema_decay=0.995, # not necessary if ema=False
 ).to(device)
 
-batch = next(iter(train_loader)) # should be a pyg.data.Batch(...) object
-
 for epoch in range(100):
   epoch_loss, epoch_nll = edm.train_epoch(epoch, train_loader, opt)
 ```
@@ -85,8 +85,6 @@ def custom_save_sample(sampled_tensor):
   
 test_loss, test_nll = edm.sample(test_loader, custom_save_sample)
 ```
-
-> I suggest heading over the [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo) by Joshi, Bodnar, Mathis, Cohen, and Lio (2022) in case you want to find off-the-shelf geometric GNNs that serve as denoisers. You can find different implementations in the `src/models.py` file. Depending on the model, you may need to copy over extra accessory files so do remember to cite them for their amazing compilation! 
 
 ### Customisation
 You can also configure the EDM for your specific task based on what's being diffused over. 
