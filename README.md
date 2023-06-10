@@ -42,7 +42,7 @@ $$
 where $`\mathbf{\tilde{w}}_\mathbf{x}`$ is the reverse-time standard Wiener process. The score function $`\nabla_\mathbf{x}\log q_t(\mathbf{x})`$ is parameterised by a denoising dynamics model $`\epsilon_\theta(\mathbf{x}_t, t)`$ which `edm_pyg` allows you to train using the standard MSE objective:
 
 $$
-\mathcal{L} = ||\epsilon_\theta(\theta(\mathbf{x}_t,t)-\epsilon_t||^2_2, \quad \epsilon_t \sim \mathcal{N}(0, \mathbf{I})
+\mathcal{L} = ||\epsilon_\theta(\mathbf{x}_t,t)-\epsilon_t||^2_2, \quad \epsilon_t \sim \mathcal{N}(0, \mathbf{I})
 $$
 
 ## Usage
