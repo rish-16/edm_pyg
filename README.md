@@ -12,11 +12,11 @@ HuggingFace `diffusers` definitely exists but there are no go-to DDPM frameworks
 ## Contents 
 
 1. Installation
-2. Implementation Details
-3. Usage
+2. Usage
     1. Training
     2. Sampling
     3. Customisation
+3. Implementation Specifics
 4. Contributing
 5. Acknowledgements
 
@@ -29,25 +29,6 @@ $ pip install edm_pyg
 ```
 
 Or feel free to install whatever is on the `requirements.txt` file in the main directory.
-
-## Specifics
-The library uses the following _forward SDE_ formulation for an initial data distribution $q(\mathbf{x}_0)$.
-
-$$
-d\mathbf{x} = f(t)\mathbf{x}dt + g(t)d\mathbf{w}_\mathbf{x}
-$$
-
-where $\mathbf{w}_\mathbf{x}$ is the standard Weiner process and $f(t)$ and $g(t)$ are scalar functions that control the diffusion process. The corresponding reverse SDE is,
-
-$$
-d\mathbf{x} = [f(t)\mathbf{x}-g(t)^2 \nabla_\mathbf{x}\log q_t(\mathbf{x})]dt \nonumber + g(t)d\mathbf{\tilde{w}}_\mathbf{x}
-$$
-
-where $`\mathbf{\tilde{w}}_\mathbf{x}`$ is the reverse-time standard Wiener process. The score function $`\nabla_\mathbf{x}\log q_t(\mathbf{x})`$ is parameterised by a denoising dynamics model $`\epsilon_\theta(\mathbf{x}_t, t)`$ which `edm_pyg` allows you to train using the standard MSE objective:
-
-$$
-\mathcal{L} = ||\epsilon_\theta(\mathbf{x}_t,t)-\epsilon_t||^2_2, \quad \epsilon_t \sim \mathcal{N}(0, \mathbf{I})
-$$
 
 ## Usage
 `edm_pyg` allows you to both train the dynamics model and sample from it as demonstrated by the original EDM framework. 
@@ -85,6 +66,25 @@ def custom_save_sample(sampled_tensor):
   
 test_loss, test_nll = edm.sample(test_loader, custom_save_sample)
 ```
+
+## Specifics
+The library uses the following _forward SDE_ formulation for an initial data distribution $q(\mathbf{x}_0)$.
+
+$$
+d\mathbf{x} = f(t)\mathbf{x}dt + g(t)d\mathbf{w}_\mathbf{x}
+$$
+
+where $\mathbf{w}_\mathbf{x}$ is the standard Weiner process and $f(t)$ and $g(t)$ are scalar functions that control the diffusion process. The corresponding reverse SDE is,
+
+$$
+d\mathbf{x} = [f(t)\mathbf{x}-g(t)^2 \nabla_\mathbf{x}\log q_t(\mathbf{x})]dt \nonumber + g(t)d\mathbf{\tilde{w}}_\mathbf{x}
+$$
+
+where $`\mathbf{\tilde{w}}_\mathbf{x}`$ is the reverse-time standard Wiener process. The score function $`\nabla_\mathbf{x}\log q_t(\mathbf{x})`$ is parameterised by a denoising dynamics model $`\epsilon_\theta(\mathbf{x}_t, t)`$ which `edm_pyg` allows you to train using the standard MSE objective:
+
+$$
+\mathcal{L} = ||\epsilon_\theta(\mathbf{x}_t,t)-\epsilon_t||^2_2, \quad \epsilon_t \sim \mathcal{N}(0, \mathbf{I})
+$$
 
 ### Customisation
 You can also configure the EDM for your specific task based on what's being diffused over. 
