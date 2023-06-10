@@ -24,6 +24,8 @@ You can install this library via the Python package manager, `pip`:
 $ pip install edm_pyg
 ```
 
+Or feel free to install whatever is on the `requirements.txt` file in the main directory.
+
 ## Specifics
 The library uses the following _forward SDE_ formulation for an initial data distribution $q(\mathbf{x}_0)$.
 
