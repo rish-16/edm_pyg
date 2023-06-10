@@ -28,7 +28,7 @@ You can install this library via the Python package manager, `pip`:
 $ pip install edm_pyg
 ```
 
-Or feel free to install whatever is on the `requirements.txt` file in the main directory.
+Or close this repo and install whatever is on the `requirements.txt` file in the main directory.
 
 ## Usage
 `edm_pyg` allows you to both train the dynamics model and sample from it as demonstrated by the original EDM framework. 
