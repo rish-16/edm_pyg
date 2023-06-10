@@ -5,7 +5,11 @@ PyTorch Geometric wrapper of Equivariant Diffusion Models (EDM) for geometric gr
 This repo provides a ready-to-use wrapper over the Equivariant Diffusion Model (EDM) by Hoogeboom, Satorras, Vignac, and Welling (2022) ([`abs`](https://arxiv.org/abs/2203.17003), [`pdf`](https://arxiv.org/pdf/2203.17003.pdf)). The [original codebase](https://github.com/ehoogeboom/e3_diffusion_for_molecules) relies on pure PyTorch, requiring dense batch representations of the geometric graphs. From personal experience, this made it difficult to train on graphs with >50 nodes with very small batch sizes even without an over-the-top GPU. 
 
 ## Why?
-HuggingFace `diffusers` definitely exists but there's no go-to DDPM framework for graphs, let alone geometric graphsk – at least none that works with PyTorch Geometric and sparse batches of geometric data. This repository seeks to address that gap.
+HuggingFace `diffusers` definitely exists but there are no go-to DDPM frameworks/libraries for graphs, let alone geometric graphs – at least none that work directly with PyTorch Geometric and sparse batches of geometric data. This repository seeks to address that gap.
+
+---
+
+## Contents 
 
 1. Installation
 2. Implementation Details
