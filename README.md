@@ -17,8 +17,9 @@ HuggingFace `diffusers` definitely exists but there are no go-to DDPM frameworks
     2. Sampling
     3. Customisation
 3. Implementation Specifics
-4. Contributing
-5. Acknowledgements
+4. Reproducing Results
+5. Contributing
+6. Acknowledgements
 
 ## Installation
 
@@ -114,6 +115,9 @@ edm = EDMWrapper(
 ```
 
 > Note: this entire repository has minimal coupling between files and their various dependencies so that you can copy and tinker with the codebase. The methods also have extensive comments to help guide the process of making custom changes for your application. If you have any doubts here, feel free to reach out via an Issue or email! 
+
+## Reproducing Results
+To showcase the efficacy and _correctness_ of `edm_pyg` in generating geometric data, I used the library to reproduce the results from the original EDM paper on QM9. I tried to match most of the hyper-parameters and training setup (bar the GPU I had access to) and the results look pretty convincing. To avoid clogging this `README.md`, feel free to head over to `REPRODUCE.md` to view some results.
 
 ## Contributing
 
