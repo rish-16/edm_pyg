@@ -2,7 +2,7 @@
 PyTorch Geometric wrapper of Equivariant Diffusion Models (EDM) for geometric graph generation.
 
 ## What is this?
-This repo provides a ready-to-use wrapper over the Equivariant Diffusion Model (EDM) by Hoogeboom, Satorras, Vignac, and Welling (2022) ([`abs`](https://arxiv.org/abs/2203.17003), [`pdf`](https://arxiv.org/pdf/2203.17003.pdf)). The [original codebase](https://github.com/ehoogeboom/e3_diffusion_for_molecules) relies on pure PyTorch, requiring dense batch representations of the geometric graphs. From personal experience, this made it difficult to train on graphs with >50 nodes with very small batch sizes even without an over-the-top GPU. 
+This repo provides a ready-to-use wrapper over the Equivariant Diffusion Model (EDM) by Hoogeboom, Satorras, Vignac, and Welling (2022) ([`abs`](https://arxiv.org/abs/2203.17003), [`pdf`](https://arxiv.org/pdf/2203.17003.pdf)). The [original codebase](https://github.com/ehoogeboom/e3_diffusion_for_molecules) relies on pure PyTorch, requiring dense batch representations of the geometric graphs. From personal experience, this made it difficult to train on graphs with >50 nodes with very small batch sizes without an over-the-top GPU. 
 
 ## Why?
 HuggingFace `diffusers` definitely exists but there are no go-to DDPM frameworks/libraries for graphs, let alone geometric graphs – at least none that work directly with PyTorch Geometric and sparse batches of geometric data. This repository seeks to address that gap.
@@ -120,11 +120,11 @@ edm = EDMWrapper(
 > Note: this entire repository has minimal coupling between files and their various dependencies so that you can copy and tinker with the codebase. The methods also have extensive comments to help guide the process of making custom changes for your application. If you have any doubts here, feel free to reach out via an Issue or email! 
 
 ## Reproducing Results
-To showcase the efficacy and _correctness_ of `edm_pyg` in generating geometric data, I used the library to reproduce the results from the original EDM paper on QM9. I tried to match most of the hyper-parameters and training setup (bar the GPU I had access to) and the results look pretty convincing. To avoid clogging this `README.md`, feel free to head over to `REPRODUCE.md` to view some results.
+To showcase the efficacy and _correctness_ of `edm_pyg` in generating geometric data, I used the library to reproduce the results from the original EDM paper on QM9. I tried to match most of the hyper-parameters and training setup (bar the GPU I had access to) and the results look pretty convincing. To avoid clogging this `README.md`, feel free to head over to `REPRODUCE.md` to view some results. I ran the experiments on a standard NVIDIA GeForce RTX 3090 without parallelism. 
 
 ## Contributing
 
-This library is based off the original implementation by Hoogeboom, Satorras, Garcia, and Welling. If you run into any issues or have any fixes/suggestions, feel free to drop an Issue or PR!
+This library is based off the [original implementation](https://github.com/ehoogeboom/e3_diffusion_for_molecules) by Hoogeboom, Satorras, Garcia, and Welling. If you run into any issues or have any fixes/suggestions, feel free to drop an Issue or PR!
 
 ## Acknowledgements
 This wrapper was inspired by the original "Equivariant Diffusion for Molecule Generation in 3D" paper by _Hoogeboom et al. (2022)_ and is based off of the original codebase.
