@@ -36,6 +36,8 @@ Or close this repo and install whatever is on the `requirements.txt` file in the
 
 ### Training
 
+Training takes place using the `edm_pyg.EDMWrapper` class that contains the dynamics model as well as helper methods to optimise it. You can choose between the simple L2 `l2` or variational lower bound `vlb` objectives by providing an optimiser alongside the denoiser. 
+
 > In case you want to find off-the-shelf geometric GNNs for the denoiser, I suggest checking out the [Geometric GNN Dojo](https://github.com/chaitjo/geometric-gnn-dojo) by Joshi, Bodnar, Mathis, Cohen, and Lio (2022). You can find different implementations in the `src/models.py` file. Depending on the model, you may need to copy over extra accessory files so do remember to cite them for their amazing compilation! 
 
 ```python
@@ -48,6 +50,7 @@ edm = EDMWrapper(
   diffuser=dynamics,
   timesteps=500,
   scheduler="polynomial",
+  objective="l2", # l2 or vlb
   condition_time=True,
   batch_size=64,
   grad_clip=False,
