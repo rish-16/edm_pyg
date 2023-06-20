@@ -100,3 +100,15 @@ def gaussian_KL_for_dimension(q_mu, q_sigma, p_mu, p_sigma, d):
     assert len(q_sigma.size()) == 1
     assert len(p_sigma.size()) == 1
     return d * torch.log(p_sigma / q_sigma) + 0.5 * (d * q_sigma**2 + mu_norm2) / (p_sigma**2) - 0.5 * d
+
+def assert_mean_zero(z):
+    pass
+
+def sample_cog_zero_gaussian(ptr):
+    pass
+
+def sample_regular_gaussian(ptr):
+    pass
+
+def remove_mean(zt, ptr):
+    pass
